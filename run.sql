@@ -1,4 +1,4 @@
-SET search_path TO LOINC;
+SET search_path TO @schema;
 DROP TABLE IF EXISTS SourceOrganization;
 CREATE TABLE SourceOrganization (
   id  integer,
@@ -71,13 +71,8 @@ CREATE TABLE MapTo (
 
 );
 
-COPY Loinc (loinc_num, component, property, time_aspct, system, scale_typ, method_typ, class, VersionLastChanged, chng_type, DefinitionDescription, status, consumer_name, classtype, formula, exmpl_answers, survey_quest_text, survey_quest_src, unitsrequired, submitted_units, relatednames2, shortname, order_obs, cdisc_common_tests, hl7_field_subfield_id, external_copyright_notice, example_units, long_common_name, UnitsAndRange, example_ucum_units, example_si_ucum_units, status_reason, status_text, change_reason_public, common_test_rank, common_order_rank, common_si_test_rank, hl7_attachment_structure, ExternalCopyrightLink, PanelType, AskAtOrderEntry, AssociatedObservations, VersionFirstReleased, ValidHL7AttachmentRequest, DisplayName ) FROM '/Users/mpatel/Desktop/Loinc_2.69_Text_2.69/Loinc.csv' CSV HEADER;
+COPY Loinc (loinc_num, component, property, time_aspct, system, scale_typ, method_typ, class, VersionLastChanged, chng_type, DefinitionDescription, status, consumer_name, classtype, formula, exmpl_answers, survey_quest_text, survey_quest_src, unitsrequired, submitted_units, relatednames2, shortname, order_obs, cdisc_common_tests, hl7_field_subfield_id, external_copyright_notice, example_units, long_common_name, UnitsAndRange, example_ucum_units, example_si_ucum_units, status_reason, status_text, change_reason_public, common_test_rank, common_order_rank, common_si_test_rank, hl7_attachment_structure, ExternalCopyrightLink, PanelType, AskAtOrderEntry, AssociatedObservations, VersionFirstReleased, ValidHL7AttachmentRequest, DisplayName ) FROM '@csv_path/Loinc.csv' CSV HEADER;
 
-COPY MapTo (loinc, map_to, comment) FROM '/Users/mpatel/Desktop/Loinc_2.69_Text_2.69/MapTo.csv' CSV HEADER;
+COPY MapTo (loinc, map_to, comment) FROM '@csv_path/MapTo.csv' CSV HEADER;
 
-
-COPY SourceOrganization (id, copyright_id, name, copyright, terms_of_use, url) FROM '/Users/mpatel/Desktop/Loinc_2.69_Text_2.69/SourceOrganization.csv' CSV HEADER;
-
-select count(*) from Loinc;
-select count(*) from MapTo;
-select count(*) from SourceOrganization;
+COPY SourceOrganization (id, copyright_id, name, copyright, terms_of_use, url) FROM '@csv_path/SourceOrganization.csv' CSV HEADER;
