@@ -14,3 +14,4 @@ mimic-omop.cfg
 
 # OSX .DS_Store file
 .DS_Store
+.Rproj.user
